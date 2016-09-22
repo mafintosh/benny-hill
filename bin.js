@@ -5,7 +5,12 @@ var childProcess = require('child_process')
 
 var FILENAME = path.join(__dirname, 'theme.mp3')
 
-var proc = childProcess.spawn('play', [FILENAME])
+var bin = 'play'
+var args = [FILENAME]
+
+if (process.platform == 'darwin') bin = 'afplay'
+
+var proc = childProcess.spawn(bin, args)
 
 proc.stdout.resume()
 proc.stderr.resume()
