@@ -1,0 +1,21 @@
+{
+  "name": "benny-hill",
+  "version": "0.0.0",
+  "description": "Play the Benny Hill theme while running another command",
+  "bin": {
+    "benny-hill": "./bin.js"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/benny-hill.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/benny-hill/issues"
+  },
+  "homepage": "https://github.com/mafintosh/benny-hill"
+}
