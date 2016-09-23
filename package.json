@@ -6,7 +6,9 @@
     "benny-hill": "./bin.js"
   },
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "cmdmp3": "^1.0.0"
+  },
   "devDependencies": {},
   "repository": {
     "type": "git",

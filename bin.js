@@ -5,6 +5,10 @@ var childProcess = require('child_process')
 
 var FILENAME = path.join(__dirname, 'theme.mp3')
 
+if(process.platform == 'win32') {
+  return require('cmdmp3').play(FILENAME)
+}
+
 var bin = 'play'
 var args = [FILENAME]
 
