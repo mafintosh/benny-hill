@@ -1,6 +1,6 @@
 {
   "name": "benny-hill",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Play the Benny Hill theme while running another command",
   "bin": {
     "benny-hill": "./bin.js"
