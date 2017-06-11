@@ -10,22 +10,34 @@ var args = [FILENAME]
 
 if (process.platform == 'darwin') bin = 'afplay'
 
-var proc = childProcess.spawn(bin, args)
+var proc
+var respawn = true
 
-proc.stdout.resume()
-proc.stderr.resume()
-proc.unref()
+play()
+
+function play () {
+  if (!respawn) return
+
+  proc = childProcess.spawn(bin, args)
+  proc.stdout.resume()
+  proc.stderr.resume()
+  proc.unref()
+  proc.on('exit', play)
+
+  if (process.argv[2]) {
+    proc.stdout.unref()
+    proc.stderr.unref()
+    proc.stdin.unref()
+  }
+}
 
 if (process.argv[2]) {
-  proc.stdout.unref()
-  proc.stderr.unref()
-  proc.stdin.unref()
-
   childProcess.spawn(process.argv[2], process.argv.slice(3), {
     stdio: 'inherit'
   })
 }
 
 process.on('exit', function () {
+  respawn = false
   proc.kill()
 })
