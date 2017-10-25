@@ -10,6 +10,11 @@ var args = [FILENAME]
 
 if (process.platform == 'darwin') bin = 'afplay'
 
+if (has('mplayer')) {
+  bin = 'mplayer'
+  args = ['-really-quiet', FILENAME]
+}
+
 var proc
 var respawn = true
 
@@ -28,6 +33,15 @@ function play () {
     proc.stdout.unref()
     proc.stderr.unref()
     proc.stdin.unref()
+  }
+}
+
+function has (cmd) {
+  try {
+    childProcess.execSync('which ' + cmd + ' 2>/dev/null 2>/dev/null')
+    return true
+  } catch (err) {
+    return false
   }
 }
 
