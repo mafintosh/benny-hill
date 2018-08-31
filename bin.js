@@ -9,6 +9,14 @@ var bin = 'play'
 var args = [FILENAME]
 
 if (process.platform == 'darwin') bin = 'afplay'
+if (process.platform == 'win32') {
+  bin = 'powershell'
+  args = ['-c', 'Add-Type -AssemblyName PresentationCore; ' +
+                '$MediaPlayer = New-Object System.Windows.Media.Mediaplayer; ' +
+                '$MediaPlayer.Open("' + FILENAME + '"); ' +
+                '$MediaPlayer.Play(); ' +
+                'Start-Sleep 273']
+}
 
 if (has('mplayer')) {
   bin = 'mplayer'
